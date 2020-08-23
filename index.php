@@ -19,6 +19,6 @@ $app = AppFactory::create();
 \App\Helper\RequestHelper::setAdd($app);
 
 $app->addBodyParsingMiddleware();
-$app->setBasePath("/todolist");
+$app->setBasePath("/");
 
 $app->run();

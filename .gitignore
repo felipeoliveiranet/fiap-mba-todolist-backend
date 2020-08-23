@@ -1,4 +1,5 @@
 /.idea
 /vendor
 /nppBackup
-/composer.lock
+composer.lock
+composer.phar
