@@ -56,8 +56,10 @@ class TasksController
     {
         $data = $request->getParsedBody();
 
+        $title = isset($data['title']) && !empty($data['title']) ? $data['title'] : null;
+
         $repo = new TasksRepository();
-        $result = $repo->insert($data['title']);
+        $result = $repo->insert($title);
         $result["action"] = "insert";
 
         return ResponseHelper::processResponse($response, $result);
