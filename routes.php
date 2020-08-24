@@ -20,13 +20,13 @@ return function(App $app) {
 
         $app->get('/', [TasksController::class, 'list']);
         $app->post('/', [TasksController::class, 'insert']);
+        $app->delete('/', [TasksController::class, 'delete']);
 
         $app->group('/{id_task}', function ($app) {
 
             $app->get('', [TasksController::class, 'get']);
             $app->patch('', [TasksController::class, 'update']);
             $app->patch('/{task_status}', [TasksController::class, 'updateStatus']);
-            $app->delete('', [TasksController::class, 'delete']);
         });
     });
 };
