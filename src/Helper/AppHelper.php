@@ -38,19 +38,4 @@ class AppHelper
 
         return $uuid;
     }
-
-    public static function getFileDate() {
-
-        $result = "default";
-
-        try {
-
-            $result = date("d F Y - H:i:s", filemtime(get_included_files()[0]));
-
-        } catch (\Exception $e) {
-
-            var_dump($e);
-            $result = rand();
-        }
-    }
 }
