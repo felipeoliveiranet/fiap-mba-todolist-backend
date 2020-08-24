@@ -1,10 +1,7 @@
 
-Header always set Access-Control-Allow-Origin %{REQUEST_ORIGIN}e env=REQUEST_ORIGIN
-Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE"
-
 <IfModule mod_rewrite.c>
 
-Header always set Access-Control-Allow-Origin %{REQUEST_ORIGIN}e env=REQUEST_ORIGIN
+Header always set Access-Control-Allow-Origin *
 Header always set Access-Control-Allow-Methods "GET, get, POST, post, PUT, put, PATCH, patch, DELETE, delete"
 
 RewriteEngine on
