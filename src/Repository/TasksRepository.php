@@ -20,7 +20,7 @@ class TasksRepository extends DynamoDBRepository {
             ]));
 
             $result['data'] = isset($items["Items"]) ? $items["Items"] : [];
-            $result['status']  = !empty($result['data']) ? 'success' : 'fail';
+            $result['status']  = "success"; //!empty($result['data']) ? 'success' : 'fail';
 
             return $result;
 

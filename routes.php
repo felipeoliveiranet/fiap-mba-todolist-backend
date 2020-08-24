@@ -10,6 +10,7 @@ use Slim\App;
 
 return function(App $app) {
 
+    $app->redirect('', '/', 200);
     $app->get('/', function(Request $request, Response $response, $args) {
 
         $request->getBody()->write("Welcome to the great Todolist of AWS Elastic Beanstalk and DynamoDB \o/");
