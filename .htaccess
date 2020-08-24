@@ -1,7 +1,10 @@
 
 <IfModule mod_rewrite.c>
 
-Header always set Access-Control-Allow-Origin http://localhost/
+SetEnvIf Origin "http(s)?://(www\.)?(localhost|todolink-backend-env.eba-hdhbezsi.us-east-1.elasticbeanstalk.com|elasticbeanstalk.com)$" AccessControlAllowOrigin=$0
+Header always add Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
+
+#Header always set Access-Control-Allow-Origin http://localhost, http://todolink-backend-env.eba-hdhbezsi.us-east-1.elasticbeanstalk.com
 Header always set Access-Control-Allow-Methods *
 
 RewriteEngine on
