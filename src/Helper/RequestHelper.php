@@ -18,11 +18,12 @@ class RequestHelper
         //self::authRequest();
         self::setErrorHandler($app);
 
-        $app->add(function ($req, $res, $next) {
+        $app->add(function ($req, $res) {
 
-            $response = $next($req, $res);
+            $response = $res->handle($req, $res);
 
             return $response
+                ->withHeader('Content-type', 'application/json')
                 ->withHeader('Access-Control-Allow-Origin', '*')
                 ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
                 ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
@@ -46,7 +47,7 @@ class RequestHelper
                 $response = new Response();
                 $response->getBody()->write(AppHelper::parseToJSON(['status' => 'unauthorized', 'message' => 'This API requires user authentication by token']));
 
-                return $response->withStatus(401)->withHeader("Content-type", "application/json");
+                return $response->withStatus(401);
             }
 
             return true;
@@ -72,7 +73,7 @@ class RequestHelper
             $response = $app->getResponseFactory()->createResponse();
             $response->getBody()->write($payload);
 
-            return $response->withStatus($status_code)->withHeader("Content-type", "application-json");
+            return $response->withStatus($status_code)->withHeader("x-error-type", $exception->getMessage())->withHeader("Content-type", "application-json");
         };
 
         $app->addRoutingMiddleware();

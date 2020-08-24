@@ -22,7 +22,7 @@ class ResponseHelper
 
             $response->getBody()->write(AppHelper::parseToJSON($data['data']));
 
-            return $response->withStatus(500)->withHeader('Content-type', 'application/json');
+            return $response->withStatus(500);
         }
     }
 
@@ -38,13 +38,13 @@ class ResponseHelper
 
         $response->getBody()->write(AppHelper::parseToJSON($data['data']));
 
-        return $response->withStatus($status_code)->withHeader('Content-type', 'application/json');
+        return $response->withStatus($status_code);
     }
 
     public static function withError(ResponseInterface $response, array $data)
     {
         $response->getBody()->write(AppHelper::parseToJSON($data['data']));
 
-        return $response->withStatus($data['status'] == 'error' ? 404 : 406)->withHeader('Content-type', 'application/json');
+        return $response->withStatus($data['status'] == 'error' ? 404 : 406);
     }
 }
