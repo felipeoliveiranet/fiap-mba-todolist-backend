@@ -11,7 +11,7 @@ class DynamoDBRepository {
 
 	protected $sdk;
     protected $db;
-    protected array $tables = array();
+    protected $tables = [];
 
 	function __construct() {
 		
