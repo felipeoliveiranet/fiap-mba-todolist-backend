@@ -16,13 +16,15 @@ class DynamoDBRepository {
 	function __construct() {
 		
 		$this->sdk = new Sdk([
-			'region'  => 'local',
+			'region'  => 'us-east-1',
 			'version'  => 'latest',
+			/*
 			'endpoint' => 'http://localhost:8000',
 			 'credentials' => [
 				 'key' => 'ASIAWRRTQHPVELDHTR76',
 				 'secret' => 'lyJ08j3WvrlupoUuqqqTJ+/VhRq9GQXifJm7iTZE',
 			 ],
+            */
 		]);
 		
 		$this->db = $this->sdk->createDynamoDb();
