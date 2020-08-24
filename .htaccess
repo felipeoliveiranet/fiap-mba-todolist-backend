@@ -1,7 +1,7 @@
 
 <IfModule mod_rewrite.c>
 
-Header always set Access-Control-Allow-Origin *
+Header always set Access-Control-Allow-Origin http://localhost/
 Header always set Access-Control-Allow-Methods *
 
 RewriteEngine on
