@@ -110,10 +110,8 @@ class TasksController
      */
     public function delete(Request $request, Response $response, $args)
     {
-        $data = $request->getParsedBody();
-
         $repo = new TasksRepository();
-        $result = $repo->delete($data['id_task']);
+        $result = $repo->delete($args['id_task']);
         $result["action"] = "delete";
 
         return ResponseHelper::processResponse($response, $result);

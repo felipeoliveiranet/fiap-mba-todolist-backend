@@ -10,19 +10,16 @@ use Slim\App;
 
 return function(App $app) {
 
-    /*
     $app->redirect('', '/', 200);
     $app->get('/', function(Request $request, Response $response, $args) {
 
         $request->getBody()->write("Welcome to the great Todolist of AWS Elastic Beanstalk and DynamoDB \o/");
     });
-    */
 
-    $app->group('/tasks', function (App $app) {
+    $app->group('/tasks', function ($app) {
 
         $app->get('/', [TasksController::class, 'list']);
         $app->post('/', [TasksController::class, 'insert']);
-        $app->delete('/', [TasksController::class, 'delete']);
         $app->options("/", function(Request $request, Response $response, $args) { return $response->withStatus(200); });
         $app->options("", function(Request $request, Response $response, $args) { return $response->withStatus(200); });
 
@@ -31,6 +28,7 @@ return function(App $app) {
             $app->get('', [TasksController::class, 'get']);
             $app->patch('', [TasksController::class, 'update']);
             $app->patch('/{task_status}', [TasksController::class, 'updateStatus']);
+            $app->options("/{task_status}", function(Request $request, Response $response, $args) { return $response->withStatus(200); });
             $app->delete('', [TasksController::class, 'delete']);
             $app->options("", function(Request $request, Response $response, $args) { return $response->withStatus(200); });
             $app->options("/", function(Request $request, Response $response, $args) { return $response->withStatus(200); });
