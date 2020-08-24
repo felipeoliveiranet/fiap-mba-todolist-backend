@@ -35,6 +35,8 @@ $fileDate = \App\Helper\AppHelper::getFileDate();
 \App\Helper\RequestHelper::setAdd($app);
 
 header('Last-Update-Version: ' . $fileDate);
+header("Last-Update-Derploy: $fileDate");
+header('Last-Update-TESTE__: ABC-DEF');
 
 $app->addBodyParsingMiddleware();
 //$app->setBasePath("/");

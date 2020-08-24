@@ -12,7 +12,7 @@ return function(App $app) {
 
     $app->get('/', function(Request $request, Response $response, $args) {
 
-        $request->getBody()->write("Welcome to the great Todolist of AWS Elastic Beanstalk \o/");
+        $request->getBody()->write("Welcome to the great Todolist of AWS Elastic Beanstalk and DynamoDB \o/");
     });
 
     $app->group('/tasks', function ($app) {

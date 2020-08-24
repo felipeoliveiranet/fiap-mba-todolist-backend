@@ -29,11 +29,11 @@ class AppHelper
             $datetime = new DateTime('now');
             $datetime = $datetime->format('ymzHisu');
 
-            $uuid = uniqid() . '-' . hash("fnv132", $datetime) . "-" . hash("fnv1a32", $datetime) . "-" . hash("joaat", $datetime);
+            $uuid = uniqid() . '-' . hash("fnv132", $datetime);
 
         } catch (\Exception $e) {
 
-            $uuid = md5(rand());
+            $uuid = substr(md5(rand()), 0, 15);
         }
 
         return $uuid;
@@ -41,15 +41,16 @@ class AppHelper
 
     public static function getFileDate() {
 
-        $result = "default ";
+        $result = "default";
 
         try {
 
-            $result .= date("d F Y - H:i:s", filemtime(get_included_files()[0]));
+            $result = date("d F Y - H:i:s", filemtime(get_included_files()[0]));
 
         } catch (\Exception $e) {
 
-            $result .= rand();
+            var_dump($e);
+            $result = rand();
         }
     }
 }
