@@ -9,8 +9,8 @@ use Aws\Sdk;
 
 class DynamoDBRepository {
 
-	protected Sdk $sdk;
-    protected DynamoDbClient $db;
+	protected $sdk;
+    protected $db;
     protected array $tables = array();
 
 	function __construct() {
