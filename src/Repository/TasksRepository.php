@@ -30,12 +30,12 @@ class TasksRepository extends DynamoDBRepository {
         }
     }
 
-    function getItem(Int $id_task)
+    function getItem($id_task)
     {
         $params = [
             'TableName' => "Tasks",
             'Key' => [
-                'id_task' => ['S' => "$id_task"]
+                'id_task' => ["S" => "$id_task"]
             ]
         ];
 
@@ -50,7 +50,7 @@ class TasksRepository extends DynamoDBRepository {
         return $result;
 }
 
-    function insert(String $title) {
+    function insert($title) {
 
         try {
 
@@ -127,7 +127,7 @@ class TasksRepository extends DynamoDBRepository {
             $param = [
                 'TableName' => 'Tasks',
                 'Key' => [
-                    'id_task' => ['N' => $id_task]
+                    'id_task' => ['S' => $id_task]
                 ],
                 "UpdateExpression" => "SET task_status = :task_status, updated = :updated",
                 "ConditionExpression" => "id_task = :id_task",

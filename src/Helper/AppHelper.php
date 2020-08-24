@@ -31,7 +31,7 @@ class AppHelper
 
             $uuid = uniqid() . '-' . hash("fnv132", $datetime) . "-" . hash("fnv1a32", $datetime) . "-" . hash("joaat", $datetime);
 
-        } finally {
+        } catch (\Exception $e) {
 
             $uuid = md5(rand());
         }
@@ -41,15 +41,15 @@ class AppHelper
 
     public static function getFileDate() {
 
-        $result = 0;
+        $result = "default ";
 
         try {
 
-            $result = date("d F Y - H:i:s", filemtime(get_included_files()[0]));
+            $result .= date("d F Y - H:i:s", filemtime(get_included_files()[0]));
 
-        } finally {
+        } catch (\Exception $e) {
 
-            $result = time();
+            $result .= rand();
         }
     }
 }
