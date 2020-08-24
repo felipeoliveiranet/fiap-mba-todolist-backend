@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Helper;
 
 use DateTime;
@@ -38,5 +37,19 @@ class AppHelper
         }
 
         return $uuid;
+    }
+
+    public static function getFileDate() {
+
+        $result = 0;
+
+        try {
+
+            $result = date("d F Y - H:i:s", filemtime(get_included_files()[0]));
+
+        } finally {
+
+            $result = time();
+        }
     }
 }

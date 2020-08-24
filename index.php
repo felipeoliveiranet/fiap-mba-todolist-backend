@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('America/Sao_Paulo');
+
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -19,7 +21,10 @@ $app = AppFactory::create();
 (require __DIR__ . '/settings.php');
 (require __DIR__ . '/routes.php')($app);
 
+$fileDate = \App\Helper\AppHelper::getFileDate();
 \App\Helper\RequestHelper::setAdd($app);
+
+header('Last-Update-Version: ' . $fileDate);
 
 $app->addBodyParsingMiddleware();
 //$app->setBasePath("/");
