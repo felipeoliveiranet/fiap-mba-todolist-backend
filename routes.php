@@ -20,7 +20,7 @@ return function(App $app) {
         $app->get('/', [TasksController::class, 'list']);
         $app->post('/', [TasksController::class, 'insert']);
 
-        $app->group('/{id_task:[0-9]+}', function ($app) {
+        $app->group('/{id_task}', function ($app) {
 
             $app->get('', [TasksController::class, 'get']);
             $app->patch('', [TasksController::class, 'update']);
