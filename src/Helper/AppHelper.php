@@ -29,7 +29,7 @@ class AppHelper
             $datetime = new DateTime('now');
             $datetime = $datetime->format('ymzHisu');
 
-            $uuid = uniqid() . '-' . hash("crc32", $datetime) . "-" . hash("crc32b", $datetime) . "-" . hash("crc32c", $datetime);
+            $uuid = uniqid() . '-' . hash("fnv132", $datetime) . "-" . hash("fnv1a32", $datetime) . "-" . hash("joaat", $datetime);
 
         } finally {
 

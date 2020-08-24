@@ -1,5 +1,15 @@
 <?php
 
+/*
+$hashs = hash_algos();
+
+for($i=0; $i<count($hashs);$i++) {
+    echo $hashs[$i] . " > " . hash($hashs[$i], time()) . "<br>";
+}
+
+exit;
+*/
+
 date_default_timezone_set('America/Sao_Paulo');
 
 use Psr\Http\Message\ResponseInterface;
