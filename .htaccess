@@ -1,11 +1,9 @@
 
 <IfModule mod_rewrite.c>
-Options +FollowSymlinks
-RewriteEngine on
-
 Header always set Access-Control-Allow-Origin *
 Header always set Access-Control-Allow-Methods *
 
+RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
 </IfModule>

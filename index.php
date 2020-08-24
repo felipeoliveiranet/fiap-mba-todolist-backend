@@ -10,7 +10,7 @@ for($i=0; $i<count($hashs);$i++) {
 exit;
 */
 
-date_default_timezone_set('America/Sao_Paulo');
+//date_default_timezone_set('America/Sao_Paulo');
 
 /*
 header('Connection: keep-alive');
