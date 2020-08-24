@@ -20,8 +20,8 @@ class DynamoDBRepository {
 			'version'  => 'latest',
 			'endpoint' => 'http://localhost:8000',
 			 'credentials' => [
-				 'key' => 'fakeMyKeyIdkey',
-				 'secret' => 'fakeSecretAccessKey',
+				 'key' => 'ASIAWRRTQHPVELDHTR76',
+				 'secret' => 'lyJ08j3WvrlupoUuqqqTJ+/VhRq9GQXifJm7iTZE',
 			 ],
 		]);
 		

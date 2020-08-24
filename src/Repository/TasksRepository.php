@@ -14,7 +14,10 @@ class TasksRepository extends DynamoDBRepository {
     {
         try {
 
-            $items = current((array)$this->db->scan(array('TableName' => 'Tasks')));
+            $items = current((array)$this->db->scan([
+                'TableName' => 'Tasks',
+                'ScanIndexForward' => true
+            ]));
 
             $result['data'] = isset($items["Items"]) ? $items["Items"] : [];
             $result['status']  = !empty($result['data']) ? 'success' : 'fail';
@@ -23,7 +26,7 @@ class TasksRepository extends DynamoDBRepository {
 
         } catch (Exception $e) {
 
-           throw new $e;
+           throw $e;
         }
     }
 
@@ -32,7 +35,7 @@ class TasksRepository extends DynamoDBRepository {
         $params = [
             'TableName' => "Tasks",
             'Key' => [
-                'id_task' => ['N' => $id_task]
+                'id_task' => ['S' => "$id_task"]
             ]
         ];
 
@@ -51,16 +54,16 @@ class TasksRepository extends DynamoDBRepository {
 
         try {
 
+            $id			= AppHelper::getUUID();
             $date		= AppHelper::getDatetime();
-			$id			= time();
 
 			$param = array(
                 'TableName' => 'Tasks',
                 'Item' => array(
-                    'id_task'   	=> array('N' => $id),
-                    'created'  	    => array('S' => $date),
-                    'updated'  	    => array('S' => $date),
-                    'title'   	    => array('S' => $title),
+                    'id_task'   	=> array('S' => "$id"),
+                    'created'  	    => array('S' => "$date"),
+                    'updated'  	    => array('S' => "$date"),
+                    'title'   	    => array('S' => "$title"),
                     'task_status'   => array('S' => TaskStatusEnum::TODO)
                 ),
                 'ReturnValues' => 'ALL_OLD',
@@ -75,7 +78,7 @@ class TasksRepository extends DynamoDBRepository {
 
         } catch (Exception $e) {
 
-            throw new $e;
+            throw $e;
         }
 	}
 
@@ -88,14 +91,14 @@ class TasksRepository extends DynamoDBRepository {
             $param = [
                 'TableName' => 'Tasks',
                 'Key' => [
-                    'id_task' => ['N' => $id_task]
+                    'id_task' => ['S' => "$id_task"]
                 ],
                 "UpdateExpression" => "SET title = :title, updated = :updated",
                 "ConditionExpression" => "id_task = :id_task",
                 "ExpressionAttributeValues" => [
-                    ":id_task" =>  ["N" => $id_task],
-                    ":title" =>  ["S" => $title],
-                    ":updated" =>  ["S" => $date]
+                    ":id_task" =>  ["S" => "$id_task"],
+                    ":title" =>  ["S" => "$title"],
+                    ":updated" =>  ["S" => "$date"]
                 ],
             ];
 
@@ -129,9 +132,9 @@ class TasksRepository extends DynamoDBRepository {
                 "UpdateExpression" => "SET task_status = :task_status, updated = :updated",
                 "ConditionExpression" => "id_task = :id_task",
                 "ExpressionAttributeValues" => [
-                    ":id_task" =>  ["N" => $id_task],
-                    ":task_status" =>  ["S" => $task_status],
-                    ":updated" =>  ["S" => $date]
+                    ":id_task" =>  ["S" => "$id_task"],
+                    ":task_status" =>  ["S" => "$task_status"],
+                    ":updated" =>  ["S" => "$date"]
                 ],
                 'ReturnValues' => 'UPDATED_NEW',
             ];
@@ -159,11 +162,11 @@ class TasksRepository extends DynamoDBRepository {
             $param = [
                 'TableName' => 'Tasks',
                 'Key' => [
-                    'id_task' => ['N' => $id_task]
+                    'id_task' => ['S' => "$id_task"]
                 ],
                 "ConditionExpression" => "id_task = :id_task",
                 "ExpressionAttributeValues" => [
-                    ":id_task" =>  ["N" => $id_task],
+                    ":id_task" =>  ["S" => "$id_task"],
                 ],
                 'ReturnValue', 'ALL_OLD'
             ];

@@ -7,6 +7,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 use Slim\Factory\AppFactory;
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
+
 require __DIR__ . '/vendor/autoload.php';
 
 const APP_CONFIGURED = true;
