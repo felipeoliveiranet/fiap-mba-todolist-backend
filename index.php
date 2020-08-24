@@ -15,6 +15,7 @@ date_default_timezone_set('America/Sao_Paulo');
 header('Connection: keep-alive');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
