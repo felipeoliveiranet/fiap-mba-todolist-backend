@@ -1,13 +1,11 @@
 
 Header always set Access-Control-Allow-Origin %{REQUEST_ORIGIN}e env=REQUEST_ORIGIN
 Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE"
-Header always set Access-Control-Allow-Headers "append,delete,entries,foreach,get,has,keys,set,values,Authorization,X-Requested-With,Content-Type,Accept,Origin"
 
 <IfModule mod_rewrite.c>
 
 Header always set Access-Control-Allow-Origin %{REQUEST_ORIGIN}e env=REQUEST_ORIGIN
-Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE"
-Header always set Access-Control-Allow-Headers "append,delete,entries,foreach,get,has,keys,set,values,Authorization,X-Requested-With,Content-Type,Accept,Origin"
+Header always set Access-Control-Allow-Methods "GET, get, POST, post, PUT, put, PATCH, patch, DELETE, delete"
 
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f

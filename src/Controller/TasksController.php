@@ -58,6 +58,9 @@ class TasksController
 
         $title = isset($data['title']) && !empty($data['title']) ? $data['title'] : null;
 
+        if($title ==null)
+            throw new \Exception("Task without title!", 406);
+
         $repo = new TasksRepository();
         $result = $repo->insert($title);
         $result["action"] = "insert";
