@@ -7,7 +7,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 use Slim\Factory\AppFactory;
 
-require __DIR__ . '\vendor\autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 const APP_CONFIGURED = true;
 
@@ -19,7 +19,7 @@ $app = AppFactory::create();
 \App\Helper\RequestHelper::setAdd($app);
 
 $app->addBodyParsingMiddleware();
-$app->setBasePath("/");
+//$app->setBasePath("/");
 
 $app->run();
 
