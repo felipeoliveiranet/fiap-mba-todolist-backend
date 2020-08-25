@@ -75,8 +75,10 @@ class TasksController
     {
         $data = $request->getParsedBody();
 
+        $data = isset($args['id_task']) && !empty($args['id_task']) ? $args['id_task'] : $data['id_task'];
+
         $repo = new TasksRepository();
-        $result = $repo->update($args['id_task'], $data['title']);
+        $result = $repo->update($args['id_task'], $data);
         $result["action"] = "update";
 
         return ResponseHelper::processResponse($response, $result);
@@ -110,8 +112,12 @@ class TasksController
      */
     public function delete(Request $request, Response $response, $args)
     {
+        $data = $request->getParsedBody();
+
+        $data = isset($args['id_task']) && !empty($args['id_task']) ? $args['id_task'] : $data['id_task'];
+
         $repo = new TasksRepository();
-        $result = $repo->delete($args['id_task']);
+        $result = $repo->delete($data);
         $result["action"] = "delete";
 
         return ResponseHelper::processResponse($response, $result);
