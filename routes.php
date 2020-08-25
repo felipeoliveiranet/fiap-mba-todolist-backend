@@ -19,18 +19,21 @@ return function(App $app) {
 
         $app->get('/', [TasksController::class, 'list']);
         $app->post('/', [TasksController::class, 'insert']);
-        $app->patch("", [TasksController::class, 'update']);
         $app->delete("", [TasksController::class, 'delete']);
         $app->options("", function(Request $request, Response $response, $args) { return $response->withStatus(200); });
+        $app->post("/DELETE", [TasksController::class, 'delete']);
+        $app->options("/DELETE", function(Request $request, Response $response, $args) { return $response->withStatus(200); });
 
         $app->group('/{id_task}', function ($app) {
 
             $app->get('', [TasksController::class, 'get']);
             $app->patch('', [TasksController::class, 'update']);
+            $app->options("", function(Request $request, Response $response, $args) { return $response->withStatus(200); });
             $app->patch('/{task_status}', [TasksController::class, 'updateStatus']);
             $app->options("/{task_status}", function(Request $request, Response $response, $args) { return $response->withStatus(200); });
             $app->delete("", [TasksController::class, 'delete']);
-            $app->options("", function(Request $request, Response $response, $args) { return $response->withStatus(200); });
+            $app->post("/DELETE", [TasksController::class, 'delete']);
+            $app->options("/DELETE", function(Request $request, Response $response, $args) { return $response->withStatus(200); });
         });
     });
 };

@@ -75,10 +75,10 @@ class TasksController
     {
         $data = $request->getParsedBody();
 
-        $data = isset($args['id_task']) && !empty($args['id_task']) ? $args['id_task'] : $data['id_task'];
+        $id = isset($args['id_task']) && !empty($args['id_task']) ? $args['id_task'] : $data['id_task'];
 
         $repo = new TasksRepository();
-        $result = $repo->update($args['id_task'], $data);
+        $result = $repo->update($id, $data['title']);
         $result["action"] = "update";
 
         return ResponseHelper::processResponse($response, $result);
